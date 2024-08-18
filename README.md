@@ -36,13 +36,13 @@ First, you'll need to set up an EC2 instance, Virtual Private Cloud (VPC), and a
 
 When setting up your VPC and subnet, ensure they are correctly configured to allow traffic to your instance. Here's an example screenshot of my networking settings:
 
-![Networking Configuration](screenshots/networking-configuration.png)
+![Networking Configuration](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/networking%20ec2%20setting%20config.png)
 
 ## 🔐 Step 2: Create a Key Pair
 
 Creating a key pair is essential for securely connecting to your EC2 instance. Make sure to select the correct key pair type (`.pem`), which is required for SSH access.
 
-![Key Pair Configuration](screenshots/key-pair.png)
+![Key Pair Configuration](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/keypair%20setup%20.png)
 
 > **Note:** The `.pem` file is crucial. Store it securely as you'll need it to SSH into your instance.
 
@@ -64,7 +64,7 @@ sudo su
 
 This grants you the necessary permissions to perform administrative tasks. Here's an example screenshot showing this:
 
-![Root User Access](screenshots/root-user-access.png)
+![Root User Access](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/not%20being%20superuser%20command%20.png)
 
 ## 🛠 Step 4: Update and Install NGINX
 
@@ -75,7 +75,7 @@ yum update -y
 yum install nginx -y
 ```
 
-![NGINX Installation](screenshots/nginx-installation.png)
+![NGINX Installation](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/yum%20update%2Cnginx%20install%20.png)
 
 ## 🔍 Step 5: Verify NGINX Installation
 
@@ -91,7 +91,7 @@ This checks the installed version of NGINX and confirms the installation. If NGI
 sudo systemctl enable nginx
 ```
 
-![NGINX Enabled](screenshots/nginx-enabled.png)
+![NGINX Enabled](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/nginx%20enabled%2Cbut%20still%20inactive.png)
 
 ### ⚙️ Handling Inactive NGINX
 
@@ -101,7 +101,7 @@ If you find that NGINX is inactive, start it with:
 sudo systemctl start nginx
 ```
 
-![NGINX Active](screenshots/nginx-active.png)
+![NGINX Active](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/nginx%20needed%20to%20start%20therefore%20now%20running%20active%20and%20enabled.png)
 
 ## 🔐 Step 6: Configure Security Groups
 
@@ -111,11 +111,11 @@ Check your EC2 instance's security group settings. If you're unable to access th
 
 To fix this, add an HTTP inbound rule to your security group:
 
-![HTTP Inbound Rule](screenshots/http-inbound-rule.png)
+![HTTP Inbound Rule](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/add%20http%20rule%20.png)
 
 After adding the rule, type the public IP of your EC2 instance in a web browser. You should see the NGINX welcome page:
 
-![NGINX Welcome Page](screenshots/nginx-welcome-page.png)
+![NGINX Welcome Page](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/success%20nginx%20been%20publsihed.png)
 
 ## 🎉 Conclusion
 
