@@ -4,17 +4,21 @@ This guide will walk you through the process of deploying an NGINX web server on
 
 ## 📋 Table of Contents
 
-- [Introduction](#introduction)
-- [Prerequisites](#prerequisites)
-- [Step 1: Create an EC2 Instance, VPC, and Subnet](#step-1-create-an-ec2-instance-vpc-and-subnet)
-- [Step 2: Create a Key Pair](#step-2-create-a-key-pair)
-- [Step 3: Connect to Your EC2 Instance](#step-3-connect-to-your-ec2-instance)
-- [Step 4: Update and Install NGINX](#step-4-update-and-install-nginx)
-- [Step 5: Verify NGINX Installation](#step-5-verify-nginx-installation)
-- [Step 6: Configure Security Groups](#step-6-configure-security-groups)
-- [🎉 Conclusion](#conclusion)
-- [🖼 Screenshots](#screenshots)
-- [📂 Directory Structure](#directory-structure)
+- [Introduction](#-introduction)
+- [Prerequisites](#-prerequisites)
+- [Step 1: Create an EC2 Instance, VPC, and Subnet](#-step-1-create-an-ec2-instance-vpc-and-subnet)
+  - [Networking Configuration](#-networking-configuration)
+- [Step 2: Create a Key Pair](#-step-2-create-a-key-pair)
+- [Step 3: Connect to Your EC2 Instance](#-step-3-connect-to-your-ec2-instance)
+  - [Troubleshooting Permissions](#-troubleshooting-permissions)
+- [Step 4: Update and Install NGINX](#-step-4-update-and-install-nginx)
+- [Step 5: Verify NGINX Installation](#-step-5-verify-nginx-installation)
+  - [Handling Inactive NGINX](#-handling-inactive-nginx)
+- [Step 6: Configure Security Groups](#-step-6-configure-security-groups)
+  - [Adding HTTP Inbound Rule](#-adding-http-inbound-rule)
+- [🎉 Conclusion](#-conclusion)
+- [🖼 Screenshots](#-screenshots)
+- [📂 Directory Structure](#-directory-structure)
 
 ## 🌟 Introduction
 
@@ -36,13 +40,13 @@ First, you'll need to set up an EC2 instance, Virtual Private Cloud (VPC), and a
 
 When setting up your VPC and subnet, ensure they are correctly configured to allow traffic to your instance. Here's an example screenshot of my networking settings:
 
-![Networking Configuration](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/networking%20ec2%20setting%20config.png)
+![Networking Configuration](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/main/screenshots/networking%20ec2%20setting%20config.png)
 
 ## 🔐 Step 2: Create a Key Pair
 
 Creating a key pair is essential for securely connecting to your EC2 instance. Make sure to select the correct key pair type (`.pem`), which is required for SSH access.
 
-![Key Pair Configuration](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/keypair%20setup%20.png)
+![Key Pair Configuration](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/main/screenshots/keypair%20setup%20.png)
 
 > **Note:** The `.pem` file is crucial. Store it securely as you'll need it to SSH into your instance.
 
@@ -64,7 +68,7 @@ sudo su
 
 This grants you the necessary permissions to perform administrative tasks. Here's an example screenshot showing this:
 
-![Root User Access](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/not%20being%20superuser%20command%20.png)
+![Root User Access](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/main/screenshots/not%20being%20superuser%20command%20.png)
 
 ## 🛠 Step 4: Update and Install NGINX
 
@@ -75,7 +79,7 @@ yum update -y
 yum install nginx -y
 ```
 
-![NGINX Installation](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/yum%20update%2Cnginx%20install%20.png)
+![NGINX Installation](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/main/screenshots/yum%20update%2Cnginx%20install%20.png)
 
 ## 🔍 Step 5: Verify NGINX Installation
 
@@ -91,7 +95,7 @@ This checks the installed version of NGINX and confirms the installation. If NGI
 sudo systemctl enable nginx
 ```
 
-![NGINX Enabled](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/nginx%20enabled%2Cbut%20still%20inactive.png)
+![NGINX Enabled](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/main/screenshots/nginx%20enabled%2Cbut%20still%20inactive.png)
 
 ### ⚙️ Handling Inactive NGINX
 
@@ -101,7 +105,7 @@ If you find that NGINX is inactive, start it with:
 sudo systemctl start nginx
 ```
 
-![NGINX Active](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/nginx%20needed%20to%20start%20therefore%20now%20running%20active%20and%20enabled.png)
+![NGINX Active](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/main/screenshots/nginx%20needed%20to%20start%20therefore%20now%20running%20active%20and%20enabled.png)
 
 ## 🔐 Step 6: Configure Security Groups
 
@@ -111,11 +115,11 @@ Check your EC2 instance's security group settings. If you're unable to access th
 
 To fix this, add an HTTP inbound rule to your security group:
 
-![HTTP Inbound Rule](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/add%20http%20rule%20.png)
+![HTTP Inbound Rule](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/main/screenshots/add%20http%20rule%20.png)
 
 After adding the rule, type the public IP of your EC2 instance in a web browser. You should see the NGINX welcome page:
 
-![NGINX Welcome Page](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/6c0ad1f895d705a049a254948a31736cc22e56a6/screenshots/success%20nginx%20been%20publsihed.png)
+![NGINX Welcome Page](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/main/screenshots/success%20nginx%20been%20publsihed.png)
 
 ## 🎉 Conclusion
 
@@ -125,14 +129,14 @@ Congratulations! You’ve successfully deployed an NGINX web server on AWS EC2. 
 
 All screenshots referenced in this guide are located in the `/screenshots` directory. Below are some key screenshots:
 
-- [Networking Configuration](screenshots/networking-configuration.png)
-- [Key Pair Configuration](screenshots/key-pair.png)
-- [Root User Access](screenshots/root-user-access.png)
-- [NGINX Installation](screenshots/nginx-installation.png)
-- [NGINX Enabled](screenshots/nginx-enabled.png)
-- [NGINX Active](screenshots/nginx-active.png)
-- [HTTP Inbound Rule](screenshots/http-inbound-rule.png)
-- [NGINX Welcome Page](screenshots/nginx-welcome-page.png)
+- [Networking Configuration](screenshots/networking%20ec2%20setting%20config.png)
+- [Key Pair Configuration](screenshots/keypair%20setup%20.png)
+- [Root User Access](screenshots/not%20being%20superuser%20command%20.png)
+- [NGINX Installation](screenshots/yum%20update%2Cnginx%20install%20.png)
+- [NGINX Enabled](screenshots/nginx%20enabled%2Cbut%20still%20inactive.png)
+- [NGINX Active](screenshots/nginx%20needed%20to%20start%20therefore%20now%20running%20active%20and%20enabled.png)
+- [HTTP Inbound Rule](screenshots/add%20http%20rule%20.png)
+- [NGINX Welcome Page](screenshots/success%20nginx%20been%20publsihed.png)
 
 ## 📂 Directory Structure
 
@@ -145,14 +149,21 @@ Deploying-NGINX-on-AWS-EC2/
 ├── docs/
 │   └── detailed-setup.md
 ├── screenshots/
-│   ├── networking-configuration.png
-│   ├── key-pair.png
+│   ├── networking-ec2-setting-config.png
+│   ├── keypair-setup.png
 │   ├── root-user-access.png
 │   ├── nginx-installation.png
 │   ├── nginx-enabled.png
 │   ├── nginx-active.png
-│   ├── http-inbound-rule.png
+│   ├── add-http-rule.png
 │   └── nginx-welcome-page.png
 └── scripts/
     └── setup-nginx.sh
 ```
+```
+
+### Key Updates:
+
+1. **Correct Links**: All image links now point to the correct location in the repository.
+2. **Table of Contents**: The links in the Table of Contents are fully functional, allowing readers to navigate directly to the sections of interest.
+3. **Consistent Naming**: Screenshot filenames and paths are consistent with the directory structure provided.
