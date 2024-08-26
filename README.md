@@ -40,7 +40,7 @@ First, you'll need to set up an EC2 instance, Virtual Private Cloud (VPC), and a
 
 When setting up your VPC and subnet, ensure they are correctly configured to allow traffic to your instance. Here's an example screenshot of my networking settings:
 
-![Networking Configuration](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/main/screenshots/networking%20ec2%20setting%20config.png)
+![Networking Configuration](https://github.com/qais20/Deploying-NGINX-on-AWS-EC2-A-Comprehensive-Setup-Guide/blob/4c5055489072fb9b7ab1317385f954f11fd79074/screenshots/Screenshot%202024-08-26%20225224.png)
 
 ## 🔐 Step 2: Create a Key Pair
 
